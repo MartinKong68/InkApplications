@@ -42,8 +42,6 @@
                    Style="{ThemeResource HeaderTextBlockStyle}" VerticalAlignment="Center"/>
         </Border>
 
-        <Canvas x:Name="canvas" Grid.Column="4" Grid.Row="1" />
-
         <Border BorderThickness="1" BorderBrush="Black" Grid.Column="4" Grid.Row="1">
             <InkCanvas x:Name="inkCanvas" />
         </Border>
