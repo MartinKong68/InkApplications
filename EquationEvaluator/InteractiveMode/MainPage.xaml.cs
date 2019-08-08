@@ -38,6 +38,8 @@ namespace InteractiveMode
 
             numbers = new int[2];
 
+            Info.Text = "Enter the answer to the equation in the empty box.";
+
             generateNewEquation();
         }
 
@@ -80,8 +82,6 @@ namespace InteractiveMode
             textBlock0.Text = numbers[0] + "";
             textBlock2.Text = numbers[1] + "";
             textBlock3.Text = "=";
-
-            Info.Text = "";
         }
 
         //Recognizes text from the ink strokes
@@ -110,6 +110,8 @@ namespace InteractiveMode
 
                                 await Task.Delay(TimeSpan.FromSeconds(2));
 
+                                Info.Text = "";
+
                                 generateNewEquation();
                             }
                             else
@@ -120,6 +122,14 @@ namespace InteractiveMode
 
                                 Info.Text = "";
                             }
+                        }
+                        else
+                        {
+                            Info.Text = "Could not detect a number. Try again!";
+
+                            await Task.Delay(TimeSpan.FromSeconds(2));
+
+                            Info.Text = "";
                         }
 
                         foreach (var strokeId in word.GetStrokeIds())
