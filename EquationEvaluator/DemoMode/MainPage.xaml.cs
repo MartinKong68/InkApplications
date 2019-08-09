@@ -168,7 +168,7 @@ namespace ExpressionEvaluator
 
                                 textBlock[1].Text = "+";
                             }
-                            else if (word.RecognizedText == "-")
+                            else if (word.RecognizedText == "-" || word.RecognizedText == '_')
                             {
                                 mathOperator = '-';
 
