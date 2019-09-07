@@ -14,15 +14,21 @@ namespace TicTacToe
 {
     public sealed partial class MainPage : Page
     {
+        //Store the individual ink canvases and text blocks
         private InkCanvas[] inkCanvas;
         private Canvas[] canvas;
+
+        //Used to detect and analyze writing
         InkAnalyzer analyzerText = new InkAnalyzer();
         DispatcherTimer timer = new DispatcherTimer();
-        int currentCanvasNumber = 100;
 
+        //Used to manage the state of the TicTacToe game
+        int currentCanvasNumber = 100;
         private char[] gridResults;
         private bool isXNext;
         private bool gameEnded;
+
+        //Initializes the different components of the application
         public MainPage()
         {
             this.InitializeComponent();
@@ -68,6 +74,7 @@ namespace TicTacToe
             NewGame();
         }
 
+        //Creates a new game of TicTacToe by clearing the canvases and resetting the variables
         private void NewGame()
         {
             for (int i = 0; i < canvas.Length; i++)
@@ -86,6 +93,7 @@ namespace TicTacToe
             Info.Text = "Draw an 'X' in any square to begin!";
         }
 
+        //Checks if there are 3 O's or X's in a line
         private void checkForWinner()
         {
             if (gridResults[0] != ' ' && (gridResults[0] & gridResults[1] & gridResults[2]) == gridResults[0])
@@ -180,6 +188,8 @@ namespace TicTacToe
                 Info.Text = "Game Over! To start a new game, draw anywhere.";
             }
         }
+
+        //Recognizes text from ink strokes
         private async void timer_TickAsync(object sender, object e)
         {
             timer.Stop();
@@ -241,11 +251,14 @@ namespace TicTacToe
                 checkForWinner();
             }
         }
+
+        //Detects when writing starts
         private void inkCanvas_StrokeStarted(InkStrokeInput sender, PointerEventArgs args)
         {
             timer.Stop();
         }
-
+        
+        //Detects when the writing strokes are finished
         private void inkCanvas_StrokesCollected(InkPresenter sender, InkStrokesCollectedEventArgs args)
         {
             timer.Stop();
@@ -264,6 +277,8 @@ namespace TicTacToe
 
             timer.Start();
         }
+
+        //Draws the recognized ink strokes on the canvases
         private void DrawText(string recognizedText, Rect boundingRect)
         {
             TextBlock text = new TextBlock();
