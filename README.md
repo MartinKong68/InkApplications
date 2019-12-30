@@ -1,2 +1,2 @@
 # InkApplications
-My Research involving Windows Ink Applications
+My research involving Windows Ink Applications
